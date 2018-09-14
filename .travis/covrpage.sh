@@ -1,5 +1,5 @@
 #!/bin/bash
-  
+
 set -x
 if [ $TRAVIS_BRANCH == "master" ] ; then
 
@@ -13,7 +13,7 @@ Rscript -e "devtools::install() ; covrpage::covrpage_ci()"
 git add .
 git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [skip ci]"
 
-git remote add deploy https://yonis:${GH_PAT}@github.com/.git
+git remote add deploy https://yonis:${GH_PAT}@github.com/yonicd/GSEAdv.git
 git push -f deploy test -v
 
 else
