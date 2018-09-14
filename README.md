@@ -8,6 +8,7 @@ GSEAdv
 
 The goal of GSEAdv is to provide tools for better methods with gene sets collections.
 
+
 GSEAdv is based on the relationship between genes and gene sets under this schema: ![Schema of gene sets](./vignettes/GSEAdv.jpg)
 
 And provides methods to understand the relationships between each property of the schema and as a whole.
