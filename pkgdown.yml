@@ -1,0 +1,10 @@
+pandoc: '2.2'
+pkgdown: 1.1.0.9000
+pkgdown_sha: e109432b94b7fe6d16f1afc66b90c0d3373f065d
+articles:
+  gsea: gsea.html
+  gsea_describe: gsea_describe.html
+  gsea_evaluate: gsea_evaluate.html
+  gsea_simulate: gsea_simulate.html
+  tests_and_coverage: tests_and_coverage.html
+
