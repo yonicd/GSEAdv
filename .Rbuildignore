@@ -9,3 +9,5 @@
 ^README-.*\.png$
 ^README\.Rmd$
 ^.github
+^_pkgdown\.yml$
+^docs$

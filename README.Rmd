@@ -34,7 +34,7 @@ the schema and as a whole.
 
 ## Installation
 
-```{r include=FALSE}
+```{r, eval=FALSE, include=FALSE}
 install.packages(".", repos = NULL)
 ```
 
