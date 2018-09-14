@@ -11,7 +11,6 @@ r_packages:
 - roxygen2
 r_github_packages:
 - yonicd/covrpage@test_check
-- r-lib/pkgdown
 bioc_packages:
 - org.Hs.eg.db
 - reactome.db
@@ -21,19 +20,9 @@ before_install:
 - Rscript -e 'update.packages(ask = FALSE)'
 after_success:
 - Rscript -e 'covr::codecov()'
-- Rscript -e 'devtools::install(); covrpage::covrpage_ci()'
-- Rscript -e 'pkgdown::build_site()'
+- bash .travis/covrpage.sh
 after_failure:
-- Rscript -e 'devtools::install(); covrpage::covrpage_ci()'
-- Rscript -e 'pkgdown::build_site()'
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: "$GH_PAT"
-  keep-history: true
-  local-dir: docs
-  on:
-    branch: master
+- bash .travis/covrpage.sh
 env:
   global:
     secure: A5CK3tsPdtYT627U7xY36uKmAFp2fwbotwlVA6K/1dOqHJZ6nIXbmDFuZqUrJXstTG1/c6hUA35n/evtY/mN6FEvgG52EZKE/KXWDdZGMh77VGkyCEKUU8VyXDg82NgxYbg4eOeST1fmTrqN8W0Xxg+r59pHHOACNggLOO7r5US7Mmi1fSr+I1L7RKrQHNGTT9px5kpSXBTSIt/KSB69R6v9IgOty0ZjHWySNvhg0vInruI7NTKzkEF8GDIli8nPYzWHdXifLUIEGRhryFNayPkNJIK56aH4NQ3VlJn1iI7Bbx9RUczOen62puLrq1HzhJU9msc4dkYolDQ6asZBY0QCBuzjuBouiEdkjYpXh9AT5AOPZLe/SeT6XXOYlT3nZV5cp1eqOBE0jBTEj9hgtQ+lvDD8FWv3EscdXwCYouWOnbPoj/Mj6TVq7JqtrCjk7FJswm1bZg7+G4hKduwUWGCMHpa7PAVH41DzVlQ+n7M38HUzJbu1QftPlWrbnb2HtvJR3tK4m9hIBj7k5WqbbAposBcJGUes0wmsG3GP2JxlK2vbXQh/Fz8qRahcDYsXWrqzU8wC+cfYY4nOjtGB1rYDGBabhAOKBBYnezqjeQ2HD2/TqehSLJwoiz3VtJqhnLoRT4qCBusD03kzEHhYh2nTJlnVNP1A+BYhBkZPTMw=
