@@ -1,0 +1,16 @@
+* installing *source* package ‘GSEAdv’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘drop’ in package ‘GSEAdv’
+Creating a generic function from function ‘genesPerPathway’ in package ‘GSEAdv’
+Creating a generic function from function ‘pathwaysPerGene’ in package ‘GSEAdv’
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (GSEAdv)

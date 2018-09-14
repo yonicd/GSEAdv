@@ -1,0 +1,49 @@
+GSEAdv                  GSEAdv: A package for analyzing gene sets.
+Info                    A GeneSetCollection
+add                     Add a relationship
+as.GeneSetCollection    Convert a list or a Bimap interface into
+                        GeneSetCollections
+calc.nGenes             Estimate the number of genes
+calc.nPathways          Estimate the number of pathways
+check                   Checks a GeneSetCollection
+combnGPP                The combinations of genes per pathways
+combnPPG                The combinations of pathways per gene
+compare                 Pathways equal between two GeneSetCollections
+completness             Number of possible combinations
+condPerGenes            Conditional probability by genes per pathway
+condPerPathways         Conditional probability by genes per pathway
+double.factorial        Double factorial
+drop                    Remove from a GeneSetCollection
+dropRel                 Remove a relationship from a GeneSetCollection
+duplicatedGenes         Duplicated genes
+duplicatedPathways      Duplicated pathways
+estimate.nGenes         Estimate range of genes
+estimate.nPathways      Estimate range of pathways
+fromGPP                 Simulate GeneSetCollection
+fromGPP_nGenes          Simulate a GeneSetCollection
+fromPPG                 Simulate GeneSetCollection
+fromPPG_GPP             Simulate GeneSetCollection
+fromPPG_nPathways       Simulate a GeneSetCollection
+fromSizeGenes           Simulate a GeneSetCollection
+fromSizeGenes_sizePathways
+                        Create a GeneSetCollection
+fromSizePathways        Simulate a GeneSetCollection
+gene                    Statistics about genes
+genesKegg               A GeneSetCollection
+genesPerGene            Number genes related to a gene
+genesPerPathway         Genes per pathway
+independence            Checks independence of genes
+isolation               Checks isolated GeneSets
+modify                  Modify a relationship
+nGenes                  Number of genes
+nPathways               Number of GeneSets
+nested                  Pathways included in other pathways
+pathway                 Statistics about pathways
+pathwaysPerGene         Pathways per gene
+sizeGenes               Number of genes in pathways of genes
+sizePathways            Number of pathways in genes of pathways
+sizesPerGene            Number of different size of pathways per gene
+sizesPerPathway         Number of different sizes of gene per pathway
+summary,GeneSetCollection-method
+                        Calculates some statistics of the
+                        GeneSetCollection

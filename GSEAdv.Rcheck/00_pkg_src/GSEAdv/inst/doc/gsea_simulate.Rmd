@@ -1,0 +1,111 @@
+---
+title: "GSEAdv: Simulate"
+abstract: >
+  Shows the methods and functions used to create new gene sets.
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('GSEAdv')`"
+output:
+  BiocStyle::html_document:
+    fig_caption: true
+    toc_float:
+      collapsed: true
+      toc_depth: 3
+author:
+- name: Lluís Revilla
+  affiliation: 
+    - August Pi i Sunyer Biomedical Research Institute (IDIBAPS); Liver Unit, Hospital Clinic
+  email: lrevilla@clinic.cat
+vignette: >
+  %\VignetteIndexEntry{GSEAdv: Describe}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}  
+---
+```{r knitsetup, message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_knit$set(root.dir = ".")
+knitr::opts_chunk$set(collapse = TRUE, warning = TRUE)
+BiocStyle::markdown()
+library("BiocStyle")
+library("GSEAdv")
+fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+gss <- getBroadSets(fl)
+```
+
+# Introduction
+
+This vignette assumes that the reader is familiar with the infraestructure build in Bioconductor around gene sets, mainly `r Biocpkg("GSEABase")`. It provides examples of how to use the package to create and modify different gene sets.
+
+# Modifying existing gene sets
+
+The first step towards simulate a `GeneSetCollection` is to modify it. There are two ways do modifying them: adding new relationships, or removing genes and `GeneSets`.
+
+## Modifying relationships
+### Adding new ones
+
+We might want to add a gene to a gene set or to add a new gene set. We can do that with:
+
+```{r}
+add(gss, gene = c("ha", "ZNF474", "CCDC100"), pathway = "new")
+add(gss, gene = "ZNF474", pathway = c("chr16q24", "chr5q23"))
+```
+### Removing
+
+## Removing genes and `GeneSets`
+Or we might want to remove a pathway or some genes:
+
+```{r}
+# Remove a pathway
+drop(gss, pathway = "chr5q23")
+drop(gss, pathway = 1) # 1 random pathway
+drop(gss, pathway = c("chr5q23", "chr16q24")) 
+# Remove some genes
+drop(gss, gene = c("AFG3L1", "ANKRD11")) 
+drop(gss, gene = 5) # 5 random genes
+# Remove both, genes and pathways
+drop(gss, pathway = "chr5q23", gene = c("AFG3L1", "ANKRD11"))
+drop(Info, pathway = "1430728", gene = c("10", "9"))
+```
+Dropping by number is aimed to make it possible to bootstrap with different `GeneSetCollections`  comming from the same original one. 
+
+# Simulating 
+
+All the functions to simulate new `GeneSetCollection`s start with `from*`. As a summary of the methods available and what kind of data they use is provided below:
+
+method   | nGenes | nPathways | genesPerPathway| pathwaysPerGene | sizeGenes | sizePathways
+------- | ----- | ----- | ----- | ----- | ----- | ----- 
+fromGPP |  | (x) | x |  |   |   
+fromPPG | (x) |  |  |   x    |   |  
+fromGPP_nGenes | x | (x) | x    |  |  |  
+fromPPG_nPathways | (x) | x | x    |  |  |  
+fromPPG_GPP | (x) | (x) | x | x |     |     
+fromSizeGenes | (x) | (x) | (x) | (x) | x    |  
+fromSizePathways | (x) | (x) | (x) | (x) |     |  x
+
+
+: (\#tab:table) The x indicates that it is a required argument of the functions. The parenthesis indicate that it is implicit.
+
+When using more information to the simulations it takes more time (as it is randomly assigned). Also note that they must obey some simple rules: 
+ - a gene set cannot be of only one gene
+ - a gene cannot be duplicated in a single gene set
+ - there can't be duplicated gene sets (gene sets with the same genes)
+ 
+ 
+```{r fromGPP, eval=FALSE, include=FALSE}
+fromGPP(genesPerPathway(Info))
+fromPPG(pathwaysPerGene(Info))
+```
+
+```{r from_n, eval=FALSE, include=FALSE}
+fromPPG_nPathways(pathwaysPerGene(Info), nPathways(Info))
+fromGPP_nGenes(genesPerPathway(Info), nGenes(Info))
+```
+
+# Side notes
+
+Footnotes are displayed as side notes on the right margin^[this is a side note entered as a footnote], which has the advantage that they appear close to the place where they are defined.
+
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```

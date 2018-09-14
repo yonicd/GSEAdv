@@ -1,0 +1,800 @@
+
+R version 3.5.0 (2017-01-27) -- "Joy in Playing"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "GSEAdv"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> base::assign(".ExTimings", "GSEAdv-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('GSEAdv')
+Loading required package: GSEABase
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colMeans,
+    colnames, colSums, dirname, do.call, duplicated, eval, evalq,
+    Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply,
+    lengths, Map, mapply, match, mget, order, paste, pmax, pmax.int,
+    pmin, pmin.int, Position, rank, rbind, Reduce, rowMeans, rownames,
+    rowSums, sapply, setdiff, sort, table, tapply, union, unique,
+    unsplit, which, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: annotate
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:base’:
+
+    expand.grid
+
+Loading required package: XML
+Loading required package: graph
+
+Attaching package: ‘graph’
+
+The following object is masked from ‘package:XML’:
+
+    addNode
+
+If you use GSEAdv in published research, please cite:
+
+Attaching package: ‘GSEAdv’
+
+The following object is masked from ‘package:IRanges’:
+
+    drop
+
+The following object is masked from ‘package:base’:
+
+    drop
+
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("calc.nGenes")
+> ### * calc.nGenes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: calc.nGenes
+> ### Title: Estimate the number of genes
+> ### Aliases: calc.nGenes
+> 
+> ### ** Examples
+> 
+> calc.nGenes(6)
+[1] 7
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("calc.nGenes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("calc.nPathways")
+> ### * calc.nPathways
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: calc.nPathways
+> ### Title: Estimate the number of pathways
+> ### Aliases: calc.nPathways
+> 
+> ### ** Examples
+> 
+> calc.nPathways(6)
+[1] 62
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("calc.nPathways", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("check")
+> ### * check
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: check
+> ### Title: Checks a GeneSetCollection
+> ### Aliases: check check,GeneSetCollection-method
+> ###   geneIdType,GeneSetCollection-method
+> ###   collectionType,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> isTRUE(check(Info))
+[1] FALSE
+> data(sample.ExpressionSet)
+> ai <- AnnotationIdentifier(annotation(sample.ExpressionSet))
+> geneIds <- featureNames(sample.ExpressionSet)[100:109]
+> gs3 <- GeneSet(geneIds=geneIds, type=ai,
++                setName="sample1", setIdentifier="102")
+> uprotIds <- c("Q9Y6Q1", "A6NJZ7", "Q9BXI6", "Q15035", "A1X283",
++               "P55957")
+> gs4 <- GeneSet(uprotIds, geneIdType=UniprotIdentifier())
+> gsc <- GeneSetCollection(list(gs3, gs4))
+> gsc
+GeneSetCollection
+  names: sample1, NA (2 total)
+  unique identifiers: 31339_at, 31340_at, ..., P55957 (16 total)
+  types in collection:
+    geneIdType: AnnotationIdentifier, UniprotIdentifier (2 total)
+    collectionType: NullCollection (1 total)
+> geneIdType(Info)
+[1] "NullIdentifier"
+> collectionType(Info)
+[1] "NullCollection"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("check", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("combnGPP")
+> ### * combnGPP
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: combnGPP
+> ### Title: The combinations of genes per pathways
+> ### Aliases: combnGPP combnGPP,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> combnGPP(Info)
+[1] 15
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("combnGPP", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("combnPPG")
+> ### * combnPPG
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: combnPPG
+> ### Title: The combinations of pathways per gene
+> ### Aliases: combnPPG combnPPG,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> combnPPG(Info)
+[1] 3
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("combnPPG", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("compare")
+> ### * compare
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: compare
+> ### Title: Pathways equal between two GeneSetCollections
+> ### Aliases: compare
+> 
+> ### ** Examples
+> 
+> compare(Info, genesKegg)
+0 pathways are the same
+[1] 0
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("compare", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("completness")
+> ### * completness
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: completness
+> ### Title: Number of possible combinations
+> ### Aliases: completness
+> 
+> ### ** Examples
+> 
+> genesPerPathway <- c(2, 4, 5, 8, 5, 8)
+> completness(genesPerPathway)
+ 1  2  3  4  5  6  7  8 
+ 6 15 20 15  6  1  0  0 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("completness", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("condPerGenes")
+> ### * condPerGenes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: condPerGenes
+> ### Title: Conditional probability by genes per pathway
+> ### Aliases: condPerGenes condPerGenes,GeneSetCollection,missing-method
+> ###   condPerGenes,GeneSetCollection,numeric-method
+> 
+> ### ** Examples
+> 
+> condPerGenes(Info)
+               genesPerPathway
+pathwaysPerGene     2         3
+              1 0.125 0.0000000
+              2 0.125 0.3333333
+              4 0.750 0.6666667
+> condPerGenes(Info, 2)
+               genesPerPathway
+pathwaysPerGene     2
+              1 0.125
+              2 0.125
+              4 0.750
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("condPerGenes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("condPerPathways")
+> ### * condPerPathways
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: condPerPathways
+> ### Title: Conditional probability by genes per pathway
+> ### Aliases: condPerPathways
+> ###   condPerPathways,GeneSetCollection,missing-method
+> ###   condPerPathways,GeneSetCollection,numeric-method
+> 
+> ### ** Examples
+> 
+> condPerPathways(Info)
+               pathwaysPerGene
+genesPerPathway 1   2    4
+              2 1 0.5 0.75
+              3 0 0.5 0.25
+> condPerPathways(Info, 2)
+               pathwaysPerGene
+genesPerPathway   2
+              2 0.5
+              3 0.5
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("condPerPathways", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("double.factorial")
+> ### * double.factorial
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: double.factorial
+> ### Title: Double factorial
+> ### Aliases: double.factorial
+> 
+> ### ** Examples
+> 
+> double.factorial(4)
+[1] 3
+> double.factorial(5)
+[1] 15
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("double.factorial", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("drop")
+> ### * drop
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: drop
+> ### Title: Remove from a GeneSetCollection
+> ### Aliases: drop drop,GeneSetCollection,character,character-method
+> ###   drop,GeneSetCollection,missing,character-method
+> ###   drop,GeneSetCollection,character,missing-method
+> ###   drop,GeneSetCollection,numeric,numeric-method
+> ###   drop,GeneSetCollection,missing,numeric-method
+> ###   drop,GeneSetCollection,numeric,missing-method
+> 
+> ### ** Examples
+> 
+> drop(Info, gene = "3", pathway = "156580")
+Warning in check_size(object) :
+  Removing 1 genes sets with only one gene.
+
+GeneSetCollection
+  names: 1430728, 156582, 211859 (3 total)
+  unique identifiers: 10, 9 (2 total)
+  types in collection:
+    geneIdType: NullIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+> drop(Info, pathway = "156580")
+GeneSetCollection
+  names: 1430728, 156582, 194840, 211859 (4 total)
+  unique identifiers: 10, 9, 2, 3 (4 total)
+  types in collection:
+    geneIdType: NullIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("drop", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("dropRel")
+> ### * dropRel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: dropRel
+> ### Title: Remove a relationship from a GeneSetCollection
+> ### Aliases: dropRel dropRel,GeneSetCollection,character,character-method
+> 
+> ### ** Examples
+> 
+> genesPerPathway(Info)
+1430728  156580  156582  194840  211859 
+      2       3       2       2       2 
+> out <- dropRel(Info, "9", "156580")
+Warning in dropRel(Info, "9", "156580") :
+  Removing 2 genes of the pathway
+> genesPerPathway(out)
+1430728  156580  156582  194840  211859 
+      2       2       2       2       2 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("dropRel", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("duplicatedGenes")
+> ### * duplicatedGenes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: duplicatedGenes
+> ### Title: Duplicated genes
+> ### Aliases: duplicatedGenes duplicatedGenes,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> duplicatedGenes(Info)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("duplicatedGenes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("duplicatedPathways")
+> ### * duplicatedPathways
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: duplicatedPathways
+> ### Title: Duplicated pathways
+> ### Aliases: duplicatedPathways duplicatedPathways,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> duplicatedPathways(Info)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("duplicatedPathways", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("estimate.nGenes")
+> ### * estimate.nGenes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: estimate.nGenes
+> ### Title: Estimate range of genes
+> ### Aliases: estimate.nGenes
+> 
+> ### ** Examples
+> 
+> estimate.nGenes(c(4, 5, 5, 5, 5, 5))
+[1]  5 29
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("estimate.nGenes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("estimate.nPathways")
+> ### * estimate.nPathways
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: estimate.nPathways
+> ### Title: Estimate range of pathways
+> ### Aliases: estimate.nPathways
+> 
+> ### ** Examples
+> 
+> estimate.nPathways(c(4, 5, 5, 5, 5, 5))
+[1] 4 5
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("estimate.nPathways", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("fromPPG")
+> ### * fromPPG
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: fromPPG
+> ### Title: Simulate GeneSetCollection
+> ### Aliases: fromPPG
+> 
+> ### ** Examples
+> 
+> fromPPG(c(2, 2, 3, 2, 2, 2, 2))
+Iterations: 1
+GeneSetCollection
+  names: GS_10, GS_12, ..., GS_8 (7 total)
+  unique identifiers: G_6, G_7, ..., G_2 (7 total)
+  types in collection:
+    geneIdType: NullIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("fromPPG", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("genesPerGene")
+> ### * genesPerGene
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: genesPerGene
+> ### Title: Number genes related to a gene
+> ### Aliases: genesPerGene genesPerGene,GeneSetCollection,missing-method
+> ###   genesPerGene,GeneSetCollection,character-method
+> 
+> ### ** Examples
+> 
+> genesPerGene(Info)
+10  2  3  9 
+ 2  1  3  2 
+> genesPerGene(Info, unique = FALSE)
+10  2  3  9 
+ 5  1  3  5 
+>  genesPerGene(Info, unique = )
+10  2  3  9 
+ 2  1  3  2 
+> genesPerGene(Info, "10")
+10 
+ 2 
+> genesPerGene(Info, "10", unique = FALSE)
+10 
+ 5 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("genesPerGene", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("genesPerPathway")
+> ### * genesPerPathway
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: genesPerPathway
+> ### Title: Genes per pathway
+> ### Aliases: genesPerPathway
+> ###   genesPerPathway,GeneSetCollection,missing-method
+> ###   genesPerPathway,GeneSetCollection,character-method
+> 
+> ### ** Examples
+> 
+> genesPerPathway(Info)
+1430728  156580  156582  194840  211859 
+      2       3       2       2       2 
+> genesPerPathway(Info, "1430728")
+1430728 
+      2 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("genesPerPathway", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("independence")
+> ### * independence
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: independence
+> ### Title: Checks independence of genes
+> ### Aliases: independence independence,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+> gss <- getBroadSets(fl)
+> independence(gss)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("independence", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("isolation")
+> ### * isolation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: isolation
+> ### Title: Checks isolated GeneSets
+> ### Aliases: isolation isolation,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+> gss <- getBroadSets(fl)
+> # Warning
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("isolation", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("modify")
+> ### * modify
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: modify
+> ### Title: Modify a relationship
+> ### Aliases: modify modify,GeneSetCollection,character,character-method
+> 
+> ### ** Examples
+> 
+> modify(Info, "Gene2", "156580")
+GeneSetCollection
+  names: 1430728, 156580, ..., 211859 (5 total)
+  unique identifiers: 10, 9, ..., 2 (5 total)
+  types in collection:
+    geneIdType: NullIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+> modify(Info, c("Gene2", "Gene3"), "156580")
+GeneSetCollection
+  names: 1430728, 156580, ..., 211859 (5 total)
+  unique identifiers: 10, 9, ..., 2 (6 total)
+  types in collection:
+    geneIdType: NullIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+> modify(Info, "Gene2", c("156580", "211859"))
+GeneSetCollection
+  names: 1430728, 156580, ..., 211859 (5 total)
+  unique identifiers: 10, 9, ..., 2 (5 total)
+  types in collection:
+    geneIdType: NullIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("modify", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("nested")
+> ### * nested
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: nested
+> ### Title: Pathways included in other pathways
+> ### Aliases: nested nested,GeneSetCollection-method
+> 
+> ### ** Examples
+> 
+> nested(Info)
+        1430728 156580 156582 194840 211859
+1430728       1      1      1      0      1
+156580        0      1      0      0      0
+156582        1      1      1      0      1
+194840        0      0      0      1      0
+211859        1      1      1      0      1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("nested", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("pathwaysPerGene")
+> ### * pathwaysPerGene
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pathwaysPerGene
+> ### Title: Pathways per gene
+> ### Aliases: pathwaysPerGene
+> ###   pathwaysPerGene,GeneSetCollection,missing-method
+> ###   pathwaysPerGene,GeneSetCollection,character-method
+> 
+> ### ** Examples
+> 
+> pathwaysPerGene(Info)
+10  2  3  9 
+ 4  1  2  4 
+> pathwaysPerGene(Info, "10")
+10 
+ 4 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("pathwaysPerGene", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("sizeGenes")
+> ### * sizeGenes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: sizeGenes
+> ### Title: Number of genes in pathways of genes
+> ### Aliases: sizeGenes sizeGenes,GeneSetCollection,missing-method
+> ###   sizeGenes,GeneSetCollection,character-method
+> 
+> ### ** Examples
+> 
+> sizeGenes(Info)
+              Gene
+genePerPathway 10 2 3 9
+             2  3 1 1 3
+             3  1 0 1 1
+> sizeGenes(Info, "2")
+              Gene
+genePerPathway 2
+             2 1
+> sizeGenes(Info, c("2", "3"))
+              Gene
+genePerPathway 2 3
+             2 1 1
+             3 0 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sizeGenes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("sizePathways")
+> ### * sizePathways
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: sizePathways
+> ### Title: Number of pathways in genes of pathways
+> ### Aliases: sizePathways sizePathways,GeneSetCollection,missing-method
+> ###   sizePathways,GeneSetCollection,character-method
+> 
+> ### ** Examples
+> 
+> sizePathways(Info)
+               Pathway
+pathwaysPerGene 1430728 156580 156582 194840 211859
+              1       0      0      0      1      0
+              2       0      1      0      1      0
+              4       2      2      2      0      2
+> sizePathways(Info, "1430728")
+               Pathway
+pathwaysPerGene 1430728
+              4       2
+> sizePathways(Info, c("1430728", "156580"))
+               Pathway
+pathwaysPerGene 1430728 156580
+              2       0      1
+              4       2      2
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sizePathways", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  4.044 0.176 4.257 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

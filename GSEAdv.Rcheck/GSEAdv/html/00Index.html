@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Analyze Gene Sets Properites</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Analyze Gene Sets Properites
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;GSEAdv&rsquo; version 0.1.0</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+<li><a href="../doc/index.html">User guides, package vignettes and other documentation.</a></li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="GSEAdv.html">GSEAdv-package</a></td>
+<td>GSEAdv: A package for analyzing gene sets.</td></tr>
+<tr><td style="width: 25%;"><a href="add.html">add</a></td>
+<td>Add a relationship</td></tr>
+<tr><td style="width: 25%;"><a href="add.html">add-method</a></td>
+<td>Add a relationship</td></tr>
+<tr><td style="width: 25%;"><a href="as.GeneSetCollection.html">as.GeneSetCollection</a></td>
+<td>Convert a list or a Bimap interface into GeneSetCollections</td></tr>
+<tr><td style="width: 25%;"><a href="as.GeneSetCollection.html">as.GeneSetCollection-method</a></td>
+<td>Convert a list or a Bimap interface into GeneSetCollections</td></tr>
+<tr><td style="width: 25%;"><a href="calc.nGenes.html">calc.nGenes</a></td>
+<td>Estimate the number of genes</td></tr>
+<tr><td style="width: 25%;"><a href="calc.nPathways.html">calc.nPathways</a></td>
+<td>Estimate the number of pathways</td></tr>
+<tr><td style="width: 25%;"><a href="check.html">check</a></td>
+<td>Checks a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="check.html">check-method</a></td>
+<td>Checks a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="check.html">collectionType-method</a></td>
+<td>Checks a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="combnGPP.html">combnGPP</a></td>
+<td>The combinations of genes per pathways</td></tr>
+<tr><td style="width: 25%;"><a href="combnGPP.html">combnGPP-method</a></td>
+<td>The combinations of genes per pathways</td></tr>
+<tr><td style="width: 25%;"><a href="combnPPG.html">combnPPG</a></td>
+<td>The combinations of pathways per gene</td></tr>
+<tr><td style="width: 25%;"><a href="combnPPG.html">combnPPG-method</a></td>
+<td>The combinations of pathways per gene</td></tr>
+<tr><td style="width: 25%;"><a href="compare.html">compare</a></td>
+<td>Pathways equal between two GeneSetCollections</td></tr>
+<tr><td style="width: 25%;"><a href="completness.html">completness</a></td>
+<td>Number of possible combinations</td></tr>
+<tr><td style="width: 25%;"><a href="condPerGenes.html">condPerGenes</a></td>
+<td>Conditional probability by genes per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="condPerGenes.html">condPerGenes-method</a></td>
+<td>Conditional probability by genes per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="condPerPathways.html">condPerPathways</a></td>
+<td>Conditional probability by genes per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="condPerPathways.html">condPerPathways-method</a></td>
+<td>Conditional probability by genes per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="double.factorial.html">double.factorial</a></td>
+<td>Double factorial</td></tr>
+<tr><td style="width: 25%;"><a href="drop.html">drop</a></td>
+<td>Remove from a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="drop.html">drop-method</a></td>
+<td>Remove from a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="dropRel.html">dropRel</a></td>
+<td>Remove a relationship from a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="dropRel.html">dropRel-method</a></td>
+<td>Remove a relationship from a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="duplicatedGenes.html">duplicatedGenes</a></td>
+<td>Duplicated genes</td></tr>
+<tr><td style="width: 25%;"><a href="duplicatedGenes.html">duplicatedGenes-method</a></td>
+<td>Duplicated genes</td></tr>
+<tr><td style="width: 25%;"><a href="duplicatedPathways.html">duplicatedPathways</a></td>
+<td>Duplicated pathways</td></tr>
+<tr><td style="width: 25%;"><a href="duplicatedPathways.html">duplicatedPathways-method</a></td>
+<td>Duplicated pathways</td></tr>
+<tr><td style="width: 25%;"><a href="estimate.nGenes.html">estimate.nGenes</a></td>
+<td>Estimate range of genes</td></tr>
+<tr><td style="width: 25%;"><a href="estimate.nPathways.html">estimate.nPathways</a></td>
+<td>Estimate range of pathways</td></tr>
+<tr><td style="width: 25%;"><a href="fromGPP.html">fromGPP</a></td>
+<td>Simulate GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromGPP_nGenes.html">fromGPP_nGenes</a></td>
+<td>Simulate a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromPPG_GPP.html">fromGPP_PPG</a></td>
+<td>Simulate GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromPPG.html">fromPPG</a></td>
+<td>Simulate GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromPPG_GPP.html">fromPPG_GPP</a></td>
+<td>Simulate GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromPPG_nPathways.html">fromPPG_nPathways</a></td>
+<td>Simulate a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromSizeGenes.html">fromSizeGenes</a></td>
+<td>Simulate a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromSizeGenes_sizePathways.html">fromSizeGenes_sizePathways</a></td>
+<td>Create a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="fromSizePathways.html">fromSizePathways</a></td>
+<td>Simulate a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="gene.html">gene</a></td>
+<td>Statistics about genes</td></tr>
+<tr><td style="width: 25%;"><a href="gene.html">gene-method</a></td>
+<td>Statistics about genes</td></tr>
+<tr><td style="width: 25%;"><a href="check.html">geneIdType-method</a></td>
+<td>Checks a GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="genesKegg.html">genesKegg</a></td>
+<td>A GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="genesPerGene.html">genesPerGene</a></td>
+<td>Number genes related to a gene</td></tr>
+<tr><td style="width: 25%;"><a href="genesPerGene.html">genesPerGene-method</a></td>
+<td>Number genes related to a gene</td></tr>
+<tr><td style="width: 25%;"><a href="genesPerPathway.html">genesPerPathway</a></td>
+<td>Genes per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="genesPerPathway.html">genesPerPathway-method</a></td>
+<td>Genes per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="GSEAdv.html">GSEAdv</a></td>
+<td>GSEAdv: A package for analyzing gene sets.</td></tr>
+<tr><td style="width: 25%;"><a href="independence.html">independence</a></td>
+<td>Checks independence of genes</td></tr>
+<tr><td style="width: 25%;"><a href="independence.html">independence-method</a></td>
+<td>Checks independence of genes</td></tr>
+<tr><td style="width: 25%;"><a href="Info.html">Info</a></td>
+<td>A GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="isolation.html">isolation</a></td>
+<td>Checks isolated GeneSets</td></tr>
+<tr><td style="width: 25%;"><a href="isolation.html">isolation-method</a></td>
+<td>Checks isolated GeneSets</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify</a></td>
+<td>Modify a relationship</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify-method</a></td>
+<td>Modify a relationship</td></tr>
+<tr><td style="width: 25%;"><a href="nested.html">nested</a></td>
+<td>Pathways included in other pathways</td></tr>
+<tr><td style="width: 25%;"><a href="nested.html">nested-method</a></td>
+<td>Pathways included in other pathways</td></tr>
+<tr><td style="width: 25%;"><a href="nGenes.html">nGenes</a></td>
+<td>Number of genes</td></tr>
+<tr><td style="width: 25%;"><a href="nGenes.html">nGenes-method</a></td>
+<td>Number of genes</td></tr>
+<tr><td style="width: 25%;"><a href="nPathways.html">nPaths</a></td>
+<td>Number of GeneSets</td></tr>
+<tr><td style="width: 25%;"><a href="nPathways.html">nPathways</a></td>
+<td>Number of GeneSets</td></tr>
+<tr><td style="width: 25%;"><a href="nPathways.html">nPathways-method</a></td>
+<td>Number of GeneSets</td></tr>
+<tr><td style="width: 25%;"><a href="pathway.html">pathway</a></td>
+<td>Statistics about pathways</td></tr>
+<tr><td style="width: 25%;"><a href="pathway.html">pathway-method</a></td>
+<td>Statistics about pathways</td></tr>
+<tr><td style="width: 25%;"><a href="pathwaysPerGene.html">pathwaysPerGene</a></td>
+<td>Pathways per gene</td></tr>
+<tr><td style="width: 25%;"><a href="pathwaysPerGene.html">pathwaysPerGene-method</a></td>
+<td>Pathways per gene</td></tr>
+<tr><td style="width: 25%;"><a href="sizeGenes.html">sizeGenes</a></td>
+<td>Number of genes in pathways of genes</td></tr>
+<tr><td style="width: 25%;"><a href="sizeGenes.html">sizeGenes-method</a></td>
+<td>Number of genes in pathways of genes</td></tr>
+<tr><td style="width: 25%;"><a href="sizePathways.html">sizePathways</a></td>
+<td>Number of pathways in genes of pathways</td></tr>
+<tr><td style="width: 25%;"><a href="sizePathways.html">sizePathways-method</a></td>
+<td>Number of pathways in genes of pathways</td></tr>
+<tr><td style="width: 25%;"><a href="sizesPerGene.html">sizesPerGene</a></td>
+<td>Number of different size of pathways per gene</td></tr>
+<tr><td style="width: 25%;"><a href="sizesPerGene.html">sizesPerGene-method</a></td>
+<td>Number of different size of pathways per gene</td></tr>
+<tr><td style="width: 25%;"><a href="sizesPerPathway.html">sizesPerPathway</a></td>
+<td>Number of different sizes of gene per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="sizesPerPathway.html">sizesPerPathway-method</a></td>
+<td>Number of different sizes of gene per pathway</td></tr>
+<tr><td style="width: 25%;"><a href="summary.html">summary</a></td>
+<td>Calculates some statistics of the GeneSetCollection</td></tr>
+<tr><td style="width: 25%;"><a href="summary.html">summary-method</a></td>
+<td>Calculates some statistics of the GeneSetCollection</td></tr>
+</table>
+</body></html>
